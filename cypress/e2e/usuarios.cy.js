@@ -144,7 +144,7 @@ describe('DELETE - Teste de API - Gestao de usuarios', () => {
             expect(response.body.message).to.equal('Usuário removido com sucesso.')
         })
     });
-    it('Dve excluir um usuario com sucesso - de forma dinamica', () => {
+    it('Deve excluir um usuario com sucesso - de forma dinamica', () => {
         cy.cadastrarUsuario('Cassiana para deletar', 'deletar@deletar.com', 'senha123').then(userId => {
             cy.api({
                 method: 'DELETE',

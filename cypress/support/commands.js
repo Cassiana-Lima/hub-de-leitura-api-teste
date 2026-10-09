@@ -52,3 +52,18 @@ Cypress.Commands.add('cadastrarUsuario', (nome, email, senha) => {
         return response.body.user.id
     })
 })
+
+Cypress.Commands.add('cadastrarLivro', (titulo, autor, token) => {
+    cy.api({
+        method: 'POST',
+        url: 'books',
+        headers: {'Authorization' : token },
+        body: {
+            "title": titulo,
+            "author": autor,
+        }
+    }).then((response) => {
+        expect(response.status).to.equal(201)
+        return response.body.book.id
+    })
+})
