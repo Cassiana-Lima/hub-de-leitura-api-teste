@@ -21,19 +21,24 @@ describe('GET - Teste de API - Catalogo de Livros', () => {
     it('Deve listar as categorias disponiveis com sucesso', () => {
         cy.api({
             method: 'GET',
-            url: 'books'
+            url: 'books',
+            qs: { category: 'Fantasia'}
+
         }).should(response => {
             expect(response.status).to.be.equal(200)
             expect(response.body.books).to.be.an('array')
+            expect(response.body.books[0].category).to.include('Fantasia')
         })
     });
     it('Deve listar os autores disponiveis com sucesso', () => {
         cy.api({
             method: 'GET',
-            url: 'books'
+            url: 'books',
+            qs: {author: 'George Orwell'}
         }).should(response => {
             expect(response.status).to.be.equal(200)
             expect(response.body.books).to.be.an('array')
+            expect(response.body.books[0].author).to.include('George Orwell')
         })
     });
 })
